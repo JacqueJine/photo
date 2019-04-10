@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点击获取验证码</title>
+</head>
+<body>
+<button id="btn" onclick="dao()">点我获取</button><span id="span"></span>
+</body>
+<script>
+var btn=document.getElementById('btn');
+var span=document.getElementById('span');
+
+var timer=null;
+function dao(){
+    var time=5;
+
+    clearInterval(timer);
+    //倒计时事件调用的函数不能和点击事件调用的函数一样
+    timer=setInterval(function(){
+        if(time<=0){
+            span.innerHTML='点击重新发送';
+        }else{
+            span.innerHTML=time+'秒后重新发送';
+            time--;
+        }
+    },1000);
+}
+
+
+</script>
+</html>

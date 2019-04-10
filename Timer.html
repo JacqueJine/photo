@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>验证码</title>
+</head>
+<body>
+<button id="btn">点我有验证码哦</button><span id="span"></span>
+</body>
+<script>
+    var btn=document.getElementById('btn');
+    var sp=document.getElementById('span');
+    var timer=null;
+    btn.onclick=function () {
+        var time=4;
+        sp.innerText='5秒后重新发送';
+        setInterval(function() {
+            if(time<=0){
+                sp.innerText='点击重新获取';
+                btn.disabled=false;
+            }
+            else{
+                sp.innerText=time+'秒后重新发送';
+                btn.disabled=true;
+                time--;
+            }
+        },1000)
+
+    }
+</script>
+</html>

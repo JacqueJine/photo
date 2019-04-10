@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BOM的属性及方法</title>
+</head>
+<body>
+<button onclick="fn()">点我</button>
+<ul>
+    <li>111</li>
+    <li>222</li>
+    <li>333</li>
+</ul>
+</body>
+<script>
+    function fn(){
+        window.close();
+    }
+
+    //   innerheight  返回窗口的文档显示区的高度。
+    console.log(window.innerHeight);
+
+    //   innerwidth   返回窗口的文档显示区的宽度。
+    console.log(window.innerWidth);
+
+    //   length       设置或返回窗口中的框架数量。
+
+
+    //历遍的时候必须从零开始才可以设置点击事件
+   var lis=document.getElementsByTagName('li');
+   for(var i=0;i<lis.length;i++){
+       (function(a){
+           lis[i].onclick=function () {
+               alert('我是第'+(a+1)+'个li标签');
+           }
+       })(i);
+   }
+</script>
+</html>

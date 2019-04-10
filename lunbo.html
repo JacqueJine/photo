@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>轮播图</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        div {
+            width: 600px;
+            height: 250px;
+            margin: auto;
+            position: relative;
+        }
+
+        img {
+            width: 600px;
+            height: 250px;
+            display: none;
+        }
+
+        ul {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            margin-left: -70px;
+        }
+
+        li {
+            list-style: none;
+            float: left;
+            width: 30px;
+            height: 30px;
+            color: white;
+            line-height: 30px;
+            margin-right: 5px;
+            background: goldenrod;
+            text-align: center;
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <img src="img/1.jpg" alt="" style="display: block">
+    <img src="img/2.jpg" alt="">
+    <img src="img/3.jpg" alt="">
+    <img src="img/4.jpg" alt="">
+    <ul>
+        <li style="background: #cccccc">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+</div>
+</body>
+<script>
+    var imgs = document.getElementsByTagName('img');
+    var lis = document.getElementsByTagName('li');
+    var num = 0;
+    var timer=null;
+    function lb() {
+        for (var i = 0; i < imgs.length; i++) {
+            imgs[i].style.display = 'none';
+            lis[i].style.background = 'goldenrod';
+        }
+        num++;
+        if (num >= imgs.length) {
+            num = 0;
+        }
+        //不能写在else里面不然不能得到0
+        imgs[num].style.display = 'block';
+        lis[num].style.background = '#cccccc';
+    }
+
+    timer=setInterval(lb, 1000);
+
+    //鼠标事件
+    for(var index=0;index<imgs.length;index++){
+        (function (index){
+            lis[index].onmouseenter=function(){
+                for (var i = 0; i < imgs.length; i++) {
+                    imgs[i].style.display = 'none';
+                    lis[i].style.background = 'goldenrod';
+                }
+                imgs[index].style.display = 'block';
+                lis[index].style.background = '#cccccc';
+                clearInterval(timer);
+            }
+            lis[index].onmouseleave=function(){
+                timer=setInterval(lb, 1000);
+                num=index;
+            }
+        })(index)
+    }
+
+</script>
+</html>
